@@ -1,4 +1,16 @@
-[  
+[  {
+    "title": "Sparse and Structured Tensor Programming",
+    "author0": "Willow Ahrens",
+    "month": "Aug",
+    "year": "2024",
+    "url": "https://commit.csail.mit.edu/papers/2024/willow-phd-thesis.pdf",
+    "keywords": "Finch, Sparsity, Array, Tensor, Symmetry",
+    "type": "Ph.D. Thesis",
+    "address": "Cambridge, MA",
+    "school": "Massachusetts Institute of Technology",
+    "bibtexKey": "willow:phd-thesis:2024",
+    "itemType": "phdthesis"
+  },
   {
     "title": "Democratizing High-Performance DSL Development with the BuildIt Framework",
     "author0": "Ajay Brahmakshatriya",

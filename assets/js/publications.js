@@ -333,6 +333,7 @@ function createBibLink(it){
   var els = {
     errors: document.getElementById('pubs-errors'),
     results: document.getElementById('pubs-results'),
+    count: document.getElementById('pubs-count'),
     filtersInteractive: document.getElementById('filters-interactive'),
     btnClear: document.getElementById('btn-clear'),
     years: document.getElementById('facet-years'),
@@ -777,11 +778,11 @@ updateFacetCounts(els.tyBox, 'types', tCounts, state.types);
 
   }
 
-function updateFacetCounts(mount, facetKey, countsMap, stateMap) {
-  var facet = mount._facet;
-  if (!facet) return;
+  function updateFacetCounts(mount, facetKey, countsMap, stateMap) {
+    var facet = mount._facet;
+    if (!facet) return;
 
-  var itemMap = facet.itemMap;
+    var itemMap = facet.itemMap;
   for (var val in itemMap) {
     var cnt = countsMap[val] || 0;
     var display = facet.labelFor ? facet.labelFor(val) : val;
@@ -794,12 +795,22 @@ function updateFacetCounts(mount, facetKey, countsMap, stateMap) {
   }
 }
 
+  function updatePublicationCount(count){
+    if (!els.count) return;
+    var label = (count === 1) ? '1 paper' : (count + ' papers');
+    els.count.textContent = '(' + label + ')';
+  }
+
+  updatePublicationCount(0);
+
   function applyFilters(){
     // recompute dynamic counts first (so user sees availability)
     updateDynamicCounts();
 
     // then produce final result set (include all active facets)
     var items = filteredItems(null);
+
+    updatePublicationCount(items.length);
 
     // sort by year desc, stable
     items.sort(function(a,b){

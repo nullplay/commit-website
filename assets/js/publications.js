@@ -145,11 +145,70 @@ function typeLabel(k){
   return TYPE_LABELS[k] || (k.charAt(0).toUpperCase() + k.slice(1));
 }
 
+var MONTH_ABBR = ['', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
 function monthNum(s){
   if(!s) return 0;
-  var m = String(s).slice(0,3).toLowerCase();
+  var str = String(s).trim();
+  if (!str) return 0;
+  var digitMatch = str.match(/^(\d{1,2})$/);
+  if (digitMatch) {
+    var num = parseInt(digitMatch[1], 10);
+    if (num >= 1 && num <= 12) return num;
+  }
+  var m = str.slice(0,3).toLowerCase();
   var map = {jan:1,feb:2,mar:3,apr:4,may:5,jun:6,jul:7,aug:8,sep:9,oct:10,nov:11,dec:12};
   return map[m] || 0;
+}
+
+function monthLabelFromParts(parts){
+  if (!parts || !parts.month) return 'Other';
+  var base = MONTH_ABBR[parts.month] || '';
+  if (!base) return 'Other';
+  if (parts.day) return base + ' ' + parts.day;
+  return base;
+}
+
+function parseMonthDay(it){
+  var month = 0;
+  var day = 0;
+  if (it && it.date) {
+    var match = String(it.date).trim().match(/^(\d{4})(?:-(\d{1,2})(?:-(\d{1,2}))?)?/);
+    if (match) {
+      if (match[2]) {
+        var parsedMonth = parseInt(match[2], 10);
+        if (parsedMonth >= 1 && parsedMonth <= 12) month = parsedMonth;
+      }
+      if (match[3]) {
+        var parsedDay = parseInt(match[3], 10);
+        if (!isNaN(parsedDay)) day = Math.max(0, parsedDay);
+      }
+    }
+  }
+  if (!month && it && it.month) {
+    month = monthNum(it.month);
+  }
+  if (!day && it && it.day) {
+    var d = parseInt(it.day, 10);
+    if (!isNaN(d)) day = Math.max(0, d);
+  }
+  return { month: month, day: day };
+}
+
+function monthDayValue(it){
+  var parts = parseMonthDay(it);
+  if (!parts.month) return 0;
+  return (parts.month * 100) + Math.min(99, Math.max(0, parts.day || 0));
+}
+
+function monthLabelOf(it){
+  if (!it) return 'Other';
+  var parts = parseMonthDay(it);
+  if (!parts.month) return 'Other';
+  if (it.month && monthNum(it.month) === parts.month) {
+    return String(it.month);
+  }
+  return monthLabelFromParts(parts);
 }
 
   function splitKeywords(s){
@@ -163,6 +222,7 @@ function monthNum(s){
 // Key extractors (for sorting within groups)
 function keyFor(it, which){
   if (which==='year')     return it.year ? parseInt(it.year,10) : 0; // numeric
+  if (which==='month')    return monthDayValue(it);
   if (which==='type')     return typeLabel(it.itemType || 'misc');   // pretty label
   if (which==='authors')  { var a = listNormalizedAuthors(it); return a.length?a[0]:'zzz'; } // first author
   if (which==='authorFirst') { var f = firstAuthorFirstName(it); return f ? f : 'zzz'; }
@@ -177,12 +237,6 @@ function keyFor(it, which){
 
 
 function venueOf(it){ return firstDefined(it.journal, it.booktitle, it.series, it.type, it.publisher); }
-function monthNum(s){
-  if(!s) return 0;
-  var m = String(s).slice(0,3).toLowerCase();
-  var map = {jan:1,feb:2,mar:3,apr:4,may:5,jun:6,jul:7,aug:8,sep:9,oct:10,nov:11,dec:12};
-  return map[m] || 0;
-}
 
 function cmp(a, b) { return a < b ? -1 : a > b ? 1 : 0; }
 function makeSorter(key){
@@ -191,7 +245,7 @@ function makeSorter(key){
   if (key === 'venue')       return function(a,b){ return cmp((venueOf(a)||'').toLowerCase(), (venueOf(b)||'').toLowerCase()); };
   if (key === 'firstAuthor') return function(a,b){ return cmp((firstAuthorOf(a)||'').toLowerCase(), (firstAuthorOf(b)||'').toLowerCase()); };
   if (key === 'type')        return function(a,b){ return cmp((a.itemType||'misc').toLowerCase(), (b.itemType||'misc').toLowerCase()); };
-  if (key === 'month')       return function(a,b){ return cmp(monthNum(a.month), monthNum(b.month)); };
+  if (key === 'month')       return function(a,b){ return cmp(monthDayValue(b), monthDayValue(a)); };
   return null; // default order (as in data) within year
 }
 
@@ -271,7 +325,7 @@ function createBibLink(it){
     },
       sortKey: 'none',   // 'none' | 'title' | 'venue' | 'firstAuthor' | 'type' | 'month'
       sortDesc: false,
-      sortOrder: ['year','type','authorLast','none'],  // default
+      sortOrder: ['year','month','type','authorLast'],  // default
       authorSort: 'first'
 
   };
@@ -510,6 +564,7 @@ function renderList(mount, items){
         if (which === 'none') return;
         flat.sort(function(a,b){
           if (which==='year') return (keyFor(b,'year') - keyFor(a,'year')); // year desc
+          if (which==='month') return (keyFor(b,'month') - keyFor(a,'month'));
           return cmp(String(keyFor(a,which)).toLowerCase(), String(keyFor(b,which)).toLowerCase());
         });
       })(order[r]);
@@ -532,12 +587,24 @@ function renderList(mount, items){
   }
 
   var groups = {}; // label -> items
-  function add(label, it){ if (!groups[label]) groups[label]=[]; groups[label].push(it); }
+  var groupSortValue = {}; // label -> numeric sort helper
+  function add(label, it, sortVal){
+    if (!groups[label]) groups[label]=[];
+    groups[label].push(it);
+    if (sortVal !== undefined) {
+      var current = groupSortValue[label];
+      if (current === undefined || sortVal > current) groupSortValue[label] = sortVal;
+    }
+  }
 
   for (var i2=0;i2<items.length;i2++){
     var it = items[i2];
     if (primary==='year'){
       add(it.year ? String(it.year) : 'Other', it);
+    } else if (primary==='month'){
+      var label = monthLabelOf(it);
+      var sortVal = (label === 'Other') ? 0 : monthDayValue(it);
+      add(label, it, sortVal);
     } else if (primary==='type'){
       add(typeLabel(it.itemType || 'misc'), it);
     } else if (primary==='authors'){
@@ -558,6 +625,14 @@ function renderList(mount, items){
       if (B==='Other' && A!=='Other') return -1;
       return (parseInt(B,10)||0) - (parseInt(A,10)||0); // desc
     }
+    if (primary==='month'){
+      if (A==='Other' && B!=='Other') return 1;
+      if (B==='Other' && A!=='Other') return -1;
+      var aVal = groupSortValue[A] || 0;
+      var bVal = groupSortValue[B] || 0;
+      if (aVal !== bVal) return bVal - aVal;
+      return A.toLowerCase().localeCompare(B.toLowerCase());
+    }
     return A.toLowerCase().localeCompare(B.toLowerCase());
   });
 
@@ -571,6 +646,7 @@ function renderList(mount, items){
       (function(which){
         arr.sort(function(a,b){
           if (which==='year') return (keyFor(b,'year') - keyFor(a,'year'));
+          if (which==='month') return (keyFor(b,'month') - keyFor(a,'month'));
           return cmp(String(keyFor(a,which)).toLowerCase(), String(keyFor(b,which)).toLowerCase());
         });
       })(rest[r2]);
@@ -730,6 +806,9 @@ function updateFacetCounts(mount, facetKey, countsMap, stateMap) {
       var ay = a.year ? parseInt(a.year,10) : 0;
       var by = b.year ? parseInt(b.year,10) : 0;
       if (ay !== by) return by - ay;
+      var am = monthDayValue(a);
+      var bm = monthDayValue(b);
+      if (am !== bm) return bm - am;
       return 0;
     });
 

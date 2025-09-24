@@ -1169,7 +1169,7 @@
   },
   {
     "title": "Tensor Algebra Compilation with Workspaces",
-    "author0": "Fredrik Kjolstad and Peter Ahrens and Shoaib Kamil and Saman Amarasinghe",
+    "author0": "Fredrik Kjolstad and Willow Ahrens and Shoaib Kamil and Saman Amarasinghe",
     "journal": "International Symposium on Code Generation and Optimization (CGO)",
     "year": "2019",
     "month": "Feb",
@@ -1177,7 +1177,7 @@
     "keywords": "TACO",
     "bibtexKey": "kjolstad:2018:workspaces",
     "itemType": "article",
-    "oldbibtex": "@article{kjolstad:2018:workspaces,\n  author = {Fredrik Kjolstad and Peter Ahrens and Shoaib Kamil and Saman Amarasinghe},\n  journal = {International Symposium on Code Generation and Optimization (CGO)},\n  keywords = {TACO},\n  month = {Feb},\n  title = {Tensor Algebra Compilation with Workspaces},\n  url = {https://commit.csail.mit.edu/papers/2018/kjolstad-18-workspaces.pdf},\n  year = {2019}\n}\n"
+    "oldbibtex": "@article{kjolstad:2018:workspaces,\n  author = {Fredrik Kjolstad and Willow Ahrens and Shoaib Kamil and Saman Amarasinghe},\n  journal = {International Symposium on Code Generation and Optimization (CGO)},\n  keywords = {TACO},\n  month = {Feb},\n  title = {Tensor Algebra Compilation with Workspaces},\n  url = {https://commit.csail.mit.edu/papers/2018/kjolstad-18-workspaces.pdf},\n  year = {2019}\n}\n"
   },
   {
     "author0": "Ragan-Kelley, Jonathan and Adams, Andrew and Sharlet, Dillon and Barnes, Connelly and Paris, Sylvain and Levoy, Marc and Amarasinghe, Saman and Durand, Fredo",

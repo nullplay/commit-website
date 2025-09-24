@@ -101,6 +101,10 @@ span.exhibit-collectionSummaryWidget-count { font-size: 129%;  font-weight: bold
   margin: auto
 }
 
+#pubs-count {
+  font-weight: normal;
+}
+
 
 
 /* When a device is narrow, keep the spacing sensible */

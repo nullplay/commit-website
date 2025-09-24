@@ -797,7 +797,7 @@ updateFacetCounts(els.tyBox, 'types', tCounts, state.types);
 
   function updatePublicationCount(count){
     if (!els.count) return;
-    var label = (count === 1) ? '1 paper' : (count + ' papers');
+    var label = String(count || 0);
     els.count.textContent = '(' + label + ')';
   }
 

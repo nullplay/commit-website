@@ -29,7 +29,7 @@
       "author0": "Won, Jaeyeon",
     "month": "Aug",
     "year": "2023",
-    "url": "https://commit.csail.mit.edu/papers/2023/Jaeyon_SM.pdf",
+    "url": "https://commit.csail.mit.edu/papers/2023/Jaeyeon_SM.pdf",
     "keywords": "Sparse",
     "type": "S.M. Thesis",
     "address": "Cambridge, MA",
@@ -214,7 +214,7 @@
     {
     "series": "OOPSLA '25",
     "title": "The Continuous Tensor Abstraction: Where Indices Are Real",
-    "url": "http://commit.csail.mit.edu/papers/2025/Continuous-OOPSLA-2025.pdf",
+    "url": "http://commit.csail.mit.edu/papers/2025/2025_OOPSLA_Continuous.pdf",
     "doi": "10.1145/3763146",
     "abstract": "This paper introduces the continuous tensor abstraction, allowing indices to take real-number values (e.g., A[3.14]). It also presents continuous tensor algebra expressions, such as Cx,y = Ax,y * Bx,y, where indices are defined over a continuous domain. Our implementation supports piecewise-constant tensors, enabling infinite domains to be processed in finite time. We introduce new tensor formats for efficient storage and code generation techniques for automatic kernel generation. For the first time, domains such as computational geometry and computer graphics are expressed in the language of tensor programming. Our compiler demonstrates competitive or better performance compared to hand-optimized kernels across diverse applications, with significant speedups and reduced lines of code in tasks such as radius search, genomic interval queries, and trilinear interpolation in Neural Radiance Fields.",
     "number": "OOPSLA1",

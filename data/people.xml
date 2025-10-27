@@ -52,12 +52,6 @@
 
 
     <person
-      name="Ajay Brahmakshatriya"
-      url="https://intimeand.space"
-      title="Graduate Student"
-      />
-
-    <person
       name="Mit Kotak"
       url="https://www.linkedin.com/in/mit-kotak/"
       title="Graduate Student"
@@ -181,6 +175,13 @@
 
 
   <alumni>
+    <person
+      name="Ajay Brahmakshatriya"
+      url="https://intimeand.space"
+      title="Ph.D."
+      year="2025"
+      />
+
 
       <person
       name="Katsumi Okuda"

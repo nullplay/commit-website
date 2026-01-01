@@ -1,4 +1,18 @@
-[  {
+[ {
+    "title": "UniTe: A Universal Tensor Abstraction for Capturing Spatial Relationships",
+    "author0": "Ray, Jessica M. and Collin, Teodoro and Sze, Vivienne and Reuther, Albert and Amarasinghe, Saman",
+    "month": "Dec",
+    "year": "2025",
+    "url": "https://commit.csail.mit.edu/papers/2025/2025_TACO_UNITE.pdf",
+    "keywords": "Array",
+    "type": "Journal Paper",
+    "address": "Cambridge, MA",
+    "school": "Massachusetts Institute of Technology",
+    "bibtexKey": "unite:2025",
+    "itemType": "article",
+    "oldbibtex": "article{unite:2025,\n  title   = {UniTe: A Universal Tensor Abstraction for Capturing Spatial Relationships},\n  author  = {Ray, Jessica M. and\n             Collin, Teodoro and\n             Sze, Vivienne and\n             Reuther, Albert and\n             Amarasinghe, Saman},\n  journal = {ACM Transactions on Architecture and Code Optimization},\n  year    = {2025},\n  month   = dec,\n  address = {Cambridge, MA, USA},\n  url     = {https://commit.csail.mit.edu/papers/2025/2025_TACO_UNITE.pdf},\n  note    = {Work completed while at MIT CSAIL}\n}"
+  }, 
+  {
     "title": "Sparse and Structured Tensor Programming",
     "author0": "Willow Ahrens",
     "month": "Aug",

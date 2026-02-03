@@ -111,24 +111,6 @@
 	/>
 
 
-      <person
-	name="Gordon Lichtstein"
-	title="UROP"
-	/>
-
-
-
-      <person
-	name="Keming 	Miao"
-	title="UROP"
-	/>
-
-
-
-      <person
-	name="Prompt Kerdphoksup"
-	title="UROP"
-	/>
 
 
 
@@ -175,6 +157,28 @@
 
 
   <alumni>
+        <person
+	name="Gordon Lichtstein"
+	title="UROP"
+  year="2025"
+	/>
+
+
+
+      <person
+	name="Keming 	Miao"
+	title="UROP"
+  year="2025"
+	/>
+
+
+
+      <person
+	name="Prompt Kerdphoksup"
+	title="UROP"
+  year="2025"
+	/>
+
     <person
       name="Ajay Brahmakshatriya"
       url="https://intimeand.space"

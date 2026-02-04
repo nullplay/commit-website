@@ -92,9 +92,6 @@
         title="UROP"
       />
 
-
-
-
     <person
 	name="Steven Raphael"
 	title="MEng"
@@ -111,26 +108,10 @@
 	/>
 
 
-      <person
-	name="Gordon Lichtstein"
+        <person
+	name="Justin Zhang"
 	title="UROP"
 	/>
-
-
-
-      <person
-	name="Keming 	Miao"
-	title="UROP"
-	/>
-
-
-
-      <person
-	name="Prompt Kerdphoksup"
-	title="UROP"
-	/>
-
-
 
     <person
 	name="Paramuth (Namo) Samuthrsindh"
@@ -141,9 +122,6 @@
 	name="Maggie Liu"
 	title="UROP"
 	/>
-
-
-
 
         <person
 	name="Gabriela Miranda"
@@ -160,9 +138,6 @@
 	title="UROP"
 	/>
 
-  
-
-
 
     <person
 	name="Siyi Hu"
@@ -175,6 +150,28 @@
 
 
   <alumni>
+        <person
+	name="Gordon Lichtstein"
+	title="UROP"
+  year="2025"
+	/>
+
+
+
+      <person
+	name="Keming 	Miao"
+	title="UROP"
+  year="2025"
+	/>
+
+
+
+      <person
+	name="Prompt Kerdphoksup"
+	title="UROP"
+  year="2025"
+	/>
+
     <person
       name="Ajay Brahmakshatriya"
       url="https://intimeand.space"

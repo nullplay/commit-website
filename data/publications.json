@@ -1,6 +1,6 @@
 [ {
     "author0": "Won, Jaeyeon and Ahrens, Willow and Emer, Joel and Amarasinghe, Saman",
-    "title": "Insum: A Compiler for Efficient Sparse Tensor Computation via Indirect Einsums",
+    "title": "Insum: Sparse GPU Kernels Simplified and Optimized with Indirect Einsums",
     "month": "Mar",
     "year": "2026",
     "address": "Pittsburgh, PA, USA",

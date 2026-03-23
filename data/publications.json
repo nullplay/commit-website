@@ -1,4 +1,17 @@
 [ {
+    "author0": "Won, Jaeyeon and Ahrens, Willow and Emer, Joel and Amarasinghe, Saman",
+    "title": "Insum: A Compiler for Efficient Sparse Tensor Computation via Indirect Einsums",
+    "month": "Mar",
+    "year": "2026",
+    "address": "Pittsburgh, PA, USA",
+    "booktitle": "International Conference on Architectural Support for Programming Languages and Operating Systems (ASPLOS)",
+    "keywords": "Sparse,Tensors,Compiler,Indirect Einsum,GPU",
+    "url": "https://dl.acm.org/doi/10.1145/3779212.3790176",
+    "bibtexKey": "jaeyeon:asplos:2026",
+    "itemType": "inproceedings",
+    "oldbibtex": "@inproceedings{jaeyeon:asplos:2026,\n  address = {Pittsburgh, PA, USA},\n  author = {Won, Jaeyeon and Ahrens, Willow and Emer, Joel and Amarasinghe, Saman},\n  booktitle = {International Conference on Architectural Support for Programming Languages and Operating Systems (ASPLOS)},\n  keywords = {Sparse,Tensors,Compiler,Indirect Einsum,GPU},\n  month = {Mar},\n  title = {Insum: A Compiler for Efficient Sparse Tensor Computation via Indirect Einsums},\n  url = {https://dl.acm.org/doi/10.1145/3779212.3790176},\n  year = {2026}\n}\n"
+  },
+  {
     "title": "UniTe: A Universal Tensor Abstraction for Capturing Spatial Relationships",
     "author0": "Ray, Jessica M. and Collin, Teodoro Fields and Sze, Vivienne and Reuther, Albert and Amarasinghe, Saman",
     "month": "Dec",
